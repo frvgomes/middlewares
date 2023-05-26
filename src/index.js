@@ -14,7 +14,7 @@ function checksExistsUserAccount(request, response, next) {
 
   const user = users.find(user => user.username === username)
 
-  if (!user) 
+  if (!user)
     return response.status(404).json({ error: 'Usuario nao encontrado' })
 
   request.user = user
@@ -29,7 +29,7 @@ function checksCreateTodosUserAvailability(request, response, next) {
     return (!user.pro && user.todos.length < 10) || user.pro
   }
 
-  if (!userTodos()) 
+  if (!userTodos())
     return response.status(403).json({ error: 'Limite do plano free excedido' })
 
   return next()
@@ -61,7 +61,7 @@ function findUserById(request, response, next) {
 
   const userExists = users.find(user => user.id === id)
 
-  if (!userExists) 
+  if (!userExists)
     return response.status(404).json({ error: 'Usuario nao encontrado' })
 
   request.user = userExists
@@ -156,7 +156,7 @@ app.delete('/todos/:id', checksExistsUserAccount, checksTodoExists, (request, re
   const todoIndex = user.todos.indexOf(todo);
 
   if (todoIndex === -1) {
-    return response.status(404).json({ error: 'Todo não encontrado' });
+    return response.status(404).json({ error: 'Todo não encontrado.' });
   }
 
   user.todos.splice(todoIndex, 1);
